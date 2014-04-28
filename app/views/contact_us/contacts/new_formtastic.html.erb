@@ -1,0 +1,13 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li class="active">Contact</li>
+</ol>
+<h3><%= @contact_name %></h3>
+<p><%= @contact_content %></p>
+<%= semantic_form_for @contact, :url => contact_kevin_path do |f| %>
+  <%= f.input :name, :label => t('.name') if ContactUs.require_name %>
+  <%= f.input :email, :label => t('.email') %>
+  <%= f.input :subject, :label => t('.subject') if ContactUs.require_subject %>
+  <%= f.input :message, :as => :text, :label => t('.message') %>
+  <%= f.action :submit, :label => t('.submit'), :button_html => { :alt => t('.submit'), :id => 'contact_us_contact_submit', :title => t('.submit') } %>
+<% end %>

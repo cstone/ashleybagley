@@ -1,0 +1,46 @@
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Events', events_path %></li>
+  <li class="active"><%= @event.title %></li>
+</ol>
+<h3><%= @event.title %></h3>
+<p><%= @event.time.to_formatted_s(:my_format) %> <% if @event.venue %>at <%= @event.venue %><% end %></p>
+<p><%= @event.description.html_safe %></p>
+
+<table class="table table-bordered">
+  <tr>
+    <td><strong>What:</strong></td>
+    <td><%= @event.title %></td>
+  </tr>
+  <tr>
+    <td width="8%"><strong>When:</strong></td>
+    <td width="92%"><%= @event.time.to_formatted_s(:my_format) %></td>
+  </tr>
+  <% if !@event.venue.empty? %>
+      <tr>
+        <td><strong>Where:</strong></td>
+        <td><%= @event.venue %></td>
+      </tr>
+  <% end %>
+  <% if !@event.address.empty? %>
+      <tr>
+        <td></td>
+        <td><%= @event.address %> <%= @event.city %>, <%= @event.state %> <%= @event.zip %></td>
+      </tr>
+  <% end %>
+      <% if @event.url %>
+          <tr>
+            <td><strong>Website:</strong></td>
+            <td><%= link_to @event.url, @event.url, target: '_blank' %></td>
+          </tr>
+      <% end %>
+
+
+</table>
+<p class="text-right"><%= link_to 'Back to all of Kevin\'s events', events_path, class: '' %></p>
+<hr>
+<%= render 'layouts/structure/disqus-thread' %>
+
+
+
+
